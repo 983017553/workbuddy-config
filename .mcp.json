@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "connector-proxy": {
+      "type": "http",
+      "url": "http://127.0.0.1:51654/mcp",
+      "description": "Aggregated proxy containing MCP servers: agent-mail, baidu-netdisk, baidu-netdisk-local, lexiang, tdx-connector"
+    },
+    "baidu-netdisk-local": {
+      "type": "stdio",
+      "command": "C:\\Users\\hf770\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+      "args": [
+        "-u",
+        "C:\\Users\\hf770\\.workbuddy\\mcp-servers\\baidu-netdisk\\server.py"
+      ],
+      "env": {},
+      "description": "自定义百度网盘连接器（本地文件分块上传/下载/移动/重命名），与内置 baidu-netdisk 并存，避免同名冲突"
+    }
+  }
+}

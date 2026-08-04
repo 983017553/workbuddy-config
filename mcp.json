@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "baidu-netdisk-local": {
+      "type": "stdio",
+      "command": "C:\\Users\\hf770\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe",
+      "args": [
+        "-u",
+        "C:\\Users\\hf770\\.workbuddy\\mcp-servers\\baidu-netdisk\\server.py"
+      ],
+      "env": {},
+      "disabled": false
+    }
+  }
+}

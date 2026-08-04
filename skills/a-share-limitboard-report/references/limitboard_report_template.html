@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>涨跌停复盘日报 — YYYY-MM-DD</title>
+<style>
+  :root {
+    --bg: #fff5f5; --card: #fff; --text: #1c1917; --muted: #78716c;
+    --border: #fecaca; --accent: #b91c1c; --red: #dc2626; --green: #15803d;
+    --header-from: #9f1239; --header-to: #e11d48;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+    color: #fff; border-radius: 12px; padding: 24px; margin-bottom: 16px;
+  }
+  .header h1 { font-size: 1.35rem; font-weight: 700; }
+  .header .meta { opacity: 0.88; font-size: 0.85rem; margin-top: 6px; }
+  .tldr {
+    background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+    border-radius: 10px; padding: 16px 18px; margin-bottom: 16px;
+  }
+  .tldr h2 { font-size: 0.95rem; color: var(--accent); margin-bottom: 8px; }
+  .tldr ul { padding-left: 1.1em; font-size: 0.9rem; }
+  /* 盘面热力：大数字统计条 + 密表，突出涨停/炸板 */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-bottom: 20px; }
+  .stat {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 10px;
+    text-align: center; box-shadow: inset 0 -3px 0 var(--accent);
+  }
+  .stat .label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+  .stat .value { font-size: 1.85rem; font-weight: 800; color: var(--accent); margin-top: 2px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stat .value.up { color: var(--red); }
+  .stat .value.down { color: var(--green); box-shadow: none; }
+  .stat:has(.value.down) { box-shadow: inset 0 -3px 0 var(--green); }
+  h2.section {
+    font-size: 1.05rem; font-weight: 700; margin: 28px 0 10px;
+    padding: 6px 10px; background: #fef2f2; border-left: 4px solid var(--accent);
+    border-bottom: none; color: var(--accent); border-radius: 0 6px 6px 0;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0; margin-bottom: 12px; overflow-x: auto;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+  th, td { padding: 7px 8px; text-align: left; border-bottom: 1px solid #fecaca; }
+  th { color: #9f1239; font-weight: 600; background: #fff1f2; position: sticky; top: 0; }
+  tbody tr:nth-child(even) { background: #fffafa; }
+  tbody tr:hover { background: #ffe4e6; }
+  .up { color: var(--red); font-weight: 700; } .down { color: var(--green); font-weight: 700; }
+  .board-badge {
+    display: inline-block; background: #fee2e2; color: #9f1239;
+    font-size: 0.72rem; font-weight: 700; padding: 1px 6px; border-radius: 4px;
+  }
+  .footer {
+    margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.75rem; text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>涨跌停复盘日报</h1>
+    <div class="meta">日期：YYYY-MM-DD · 生成：YYYY-MM-DD HH:MM</div>
+  </div>
+
+  <div class="tldr">
+    <h2>今日要点</h2>
+    <ul>
+      <li>[情绪定性：强势/震荡/退潮]</li>
+      <li>[主线板块与最高连板]</li>
+      <li>[炸板率 / 跌停压力一句话]</li>
+    </ul>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="label">涨停</div><div class="value up">N</div></div>
+    <div class="stat"><div class="label">炸板</div><div class="value">N</div></div>
+    <div class="stat"><div class="label">封板率</div><div class="value">XX%</div></div>
+    <div class="stat"><div class="label">连板(≥2)</div><div class="value">N</div></div>
+    <div class="stat"><div class="label">跌停</div><div class="value down">N</div></div>
+  </div>
+
+  <h2 class="section">一、连板梯队（≥2 板）</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>代码</th><th>名称</th><th>现价</th><th>涨幅</th><th>板型</th><th>连板</th><th>原因</th><th>封单额</th></tr>
+      </thead>
+      <tbody><tr><td>…</td><td>…</td><td>…</td><td class="up">…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2 class="section">二、涨停板型统计</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>首板</th><th>2连</th><th>3连</th><th>4连</th><th>5板+</th><th>合计</th></tr></thead>
+      <tbody><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2 class="section">三、主线题材 Top 8</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>板块</th><th>涨停数</th><th>代表股</th><th>涨幅</th><th>原因摘要</th></tr></thead>
+      <tbody><tr><td>…</td><td>…</td><td>…</td><td class="up">…</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2 class="section">四、炸板个股明细</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>代码</th><th>名称</th><th>现价</th><th>最终涨幅</th><th>开板次数</th><th>板型</th><th>原因</th><th>封单额</th></tr>
+      </thead>
+      <tbody><tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2 class="section">五、跌停一览</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>代码</th><th>名称</th><th>跌幅</th><th>成交额</th><th>备注</th></tr></thead>
+      <tbody><tr><td>…</td><td>…</td><td class="down">…</td><td>…</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2 class="section">六、全量涨停明细</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>代码</th><th>名称</th><th>现价</th><th>涨幅</th><th>板型</th><th>原因</th><th>封单额</th></tr>
+      </thead>
+      <tbody><tr><td>…</td><td>…</td><td>…</td><td class="up">…</td><td>…</td><td>…</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="footer">以上基于公开行情整理，仅供复盘参考，不构成投资建议。</div>
+</div>
+</body>
+</html>

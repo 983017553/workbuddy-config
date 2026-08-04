@@ -1,0 +1,13 @@
+{
+  "name": "A股涨跌停日报",
+  "installedAt": 1784860509037,
+  "source": "marketplace",
+  "version": "1.0.1",
+  "skillId": "skill_2076627892488605696",
+  "examples_zh": [
+    "生成今天的涨跌停日报"
+  ],
+  "iconSource": "letter:auto",
+  "description_zh": "A股涨跌停日报，收盘后汇总涨停/跌停、连板梯队、板型分布、主线板块、炸板与全量列表。",
+  "description_en": "A-share limit-up/down daily report with consecutive board ladder and theme sectors."
+}
