@@ -11,6 +11,26 @@
 - `mcp.json` / `.mcp.json` —— MCP / 连接器配置
 - `SOUL.md` / `IDENTITY.md` / `USER.md` / `MEMORY.md` —— 身份与长期记忆
 
+## 目录结构
+```
+workbuddy-config/
+├── skills/                 # 用户级技能（每个子目录一个技能）
+│   ├── courseware-pptx/
+│   ├── ima-skills/
+│   ├── workbuddy-config-sync/   # 本仓库的打包/推送技能
+│   └── …（其余已安装技能）
+├── experts/                # 专家包
+├── memory/                 # 项目记忆日志（按日期）
+├── mcp.json                # 自定义 MCP server 配置
+├── .mcp.json               # 聚合连接器代理配置（含 connector-proxy）
+├── SOUL.md                 # AI 人格
+├── IDENTITY.md             # 身份定义
+├── USER.md                 # 用户档案
+├── MEMORY.md               # 跨会话长期记忆
+├── RESTORE.md              # 详细恢复指南
+└── README.md               # 本文件
+```
+
 ## 刻意排除（请勿手动补回）
 - `settings.json` —— 含企业微信机器人 `botToken` 等明文密钥，且为设备相关配置
 - `__pycache__/*.pyc` —— Python 编译缓存，可自动再生
